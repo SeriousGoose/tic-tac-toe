@@ -1,6 +1,9 @@
 let playerX = "X"
 let playerO = "O"
+let playerXName = "X"
+let playerOName = "O"
 let currentPlayer = playerX;
+let currentPlayerName = playerXName;
 let winner = ''
 let playerXWins = 0;
 let playerOWins = 0;
@@ -33,11 +36,33 @@ let squares = [one,two,three,four,five,six,seven,eight,nine];
 let xWinsTracker = document.getElementById('xwins')
 let oWinsTracker = document.getElementById('owins')
 let player = document.getElementById('turn')
+let myForm = document.getElementById('myform');
+let game = document.getElementById("gameboard");
+let winCounter = document.getElementById('display');
+let buttons = document.getElementById('buttons');
+
+/*let questionButton = document.getElementById("questionsubmit")
+questionButton.addEventListener('click',()=>{
+
+})*/
+
+
+let nameButton = document.getElementById('namebutton');
+nameButton.addEventListener('click', () =>{
+   playerXName = document.getElementById("playerXName").value;
+   playerOName = document.getElementById("playerOName").value;
+   currentPlayerName = playerXName;
+   myForm.style.display = "none";  
+   game.style.visibility = "visible"
+   winCounter.style.visibility = "visible"
+   buttons.style.visibility = "visible"
+   update();
+})
 
 function update(){
-player.textContent = "It is Player " + currentPlayer + "'s turn"
-oWinsTracker.textContent = "Player O Wins = " + playerOWins;
-xWinsTracker.textContent = "Player X Wins = " + playerXWins;
+player.textContent = "It is " + currentPlayerName + "'s turn"
+xWinsTracker.textContent = playerXName + " Wins = " + playerXWins;
+oWinsTracker.textContent = playerOName +" Wins = " + playerOWins;
 }
 next.addEventListener('click',() =>{
     clearBoard()
@@ -46,6 +71,15 @@ reset.addEventListener('click',()=>{
     clearBoard()
     playerXWins = 0;
     playerOWins = 0;
+    playerXName= "X"
+    playerOName= "O"
+    currentPlayerName = "X"
+    myForm.style.display = "inline"
+    game.style.visibility = "hidden"
+    buttons.style.visibility = "hidden"
+    winCounter.style.visibility = "hidden"
+    document.getElementById("playerXName").value = playerXName
+    document.getElementById("playerOName").value = playerOName
 })
 
 function clearBoard(){
@@ -56,6 +90,8 @@ function clearBoard(){
         element.textContent = '')
         winner = ""
         currentPlayer = playerX;
+        currentPlayerName = playerXName
+        roundTracker = 0;
 }
 
 function checkWinsX(){
@@ -86,10 +122,12 @@ function numbers(x, y){
             if (currentPlayer == playerX){
                 gameBoard[y] = 'X'
                 currentPlayer = playerO
+                currentPlayerName = playerOName
             }
             else if (currentPlayer == playerO){
                 gameBoard[y] = 'O'
                 currentPlayer = playerX
+                currentPlayerName = playerXName
                 }
             }
         return roundTracker++;

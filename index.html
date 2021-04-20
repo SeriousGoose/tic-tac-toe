@@ -14,6 +14,7 @@
             max-width: 500px;
             margin: auto;
         }
+
         #tic{
             display: flex;
             justify-content: center;
@@ -23,11 +24,22 @@
             display: flex;
             justify-content: center;
         }
+        #questionform{
+            display: flex;
+            justify-content: center;
+        }
+
+        /*#myform{
+            display: flex;
+            justify-content: center;
+        }*/
 
         #display{
             width: 500px;
             display: flex;
             justify-content: space-evenly;
+            visibility: hidden;
+            margin-bottom: 30px;
         }
         .wins{
             height: 50px;
@@ -36,6 +48,7 @@
         }
         #container{
             display: flex;
+            visibility: hidden;
         }
         
         #gameboard{
@@ -65,19 +78,38 @@
         #buttons{
             display: flex;
             justify-content: space-evenly;
+            visibility: hidden;
         }
     </style>
     
 </head>
 <body>
     <div id = "title">
-        <h1 id = "tic">Tic-Tac Toe!</h1>
+        <h1 id = "tic">Tic-Tac-Toe!</h1>
         <h3 id = "question">Would You like to play a game?</h3>
+        <!--<form id ="questionform" name = "questionform" action = '' method="GET">
+            <label for = "Yes">Yes</label> 
+            <input type = "radio" name = "question" id = "yesradio" value = "yes">
+            <label for = "no">No</label>
+            <input type = "radio" name = "question" id = "noradio" value = "no">
+            <button type = "button" name = "questionsubmit" id = "questionsubmit">Are You Sure?</button>
+        </form>-->
     </div>  
+    <br>
+    <form id = "myform" name = "myform" action = '' method="GET">Enter Victims Names
+        <br>
+        <br>
+        <input type = "text" name = "playerXName" id = "playerXName" placeholder="Victim One" value = ''>
+        <input type = "text" name = "playerOName" id = "playerOName" placeholder="Victim Two" value = ''>
+        <br>
+        <br>
+        <button type = "button" name = "namebutton" id = "namebutton">Confirm Victims</button>
+    </form>
+    <br>
     <div id = display>
         <div id = "turn" class = "wins"></div>
-        <div id = "owins" class = "wins"> </div>
-        <div id = "xwins" class = "wins"></div>
+        <div id = "xwins" class = "wins"> </div>
+        <div id = "owins" class = "wins"></div>
     </div>
     <div id = "container">
     <div id = "gameboard">
@@ -93,8 +125,8 @@
     </div>
     </div>
     <div id ="buttons">
-        <button id = "reset"class = "buttons">Reset Game</button>
-        <button id = "next" class = "buttons">Next Game</button>
+        <button type = "reset" id = "reset"class = "buttons">I've Had Enough</button>
+        <button id = "next" class = "buttons">One More Time...</button>
     </div>
     <script charset="utf-8" src="myscript.js"></script>
 </body>
