@@ -13,11 +13,14 @@
             font-family: 'Varela Round', sans-serif;
             max-width: 500px;
             margin: auto;
+            
         }
 
         #tic{
             display: flex;
             justify-content: center;
+            text-decoration: line-through;
+            font-size: 100px
         }
 
         #question{
@@ -29,18 +32,32 @@
             justify-content: center;
         }
 
-        /*#myform{
-            display: flex;
-            justify-content: center;
-        }*/
-
         #display{
             width: 500px;
             display: flex;
             justify-content: space-evenly;
             visibility: hidden;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
+        #results{
+            display:flex;
+            justify-content: center;
+            text-align: center;
+            visibility: hidden;
+            margin-bottom: 15px;
+            
+        }
+        #resultsscreen{
+            color:rgb(252, 249, 239);
+            background-color: black;
+            width: 500px;
+            height: 50px;
+            vertical-align: middle;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            }
         .wins{
             height: 50px;
             width: 100px;
@@ -69,7 +86,7 @@
             }
 
         .square:hover{
-            background-color: rgb(252, 249, 239);
+            background-color: #8a0303
         }
 
         .buttons{
@@ -85,31 +102,29 @@
 </head>
 <body>
     <div id = "title">
-        <h1 id = "tic">Tic-Tac-Toe!</h1>
+        <h1 id = "tic"> X X X</h1>
         <h3 id = "question">Would You like to play a game?</h3>
-        <!--<form id ="questionform" name = "questionform" action = '' method="GET">
-            <label for = "Yes">Yes</label> 
-            <input type = "radio" name = "question" id = "yesradio" value = "yes">
-            <label for = "no">No</label>
-            <input type = "radio" name = "question" id = "noradio" value = "no">
-            <button type = "button" name = "questionsubmit" id = "questionsubmit">Are You Sure?</button>
-        </form>-->
     </div>  
     <br>
     <form id = "myform" name = "myform" action = '' method="GET">Enter Victims Names
         <br>
         <br>
-        <input type = "text" name = "playerXName" id = "playerXName" placeholder="Victim One" value = ''>
-        <input type = "text" name = "playerOName" id = "playerOName" placeholder="Victim Two" value = ''>
+        <input type = "text" name = "playerXName" id = "playerXName" value = "X" placeholder="Victim One" value = ''>
+        <input type = "text" name = "playerOName" id = "playerOName" value = "O" placeholder="Victim Two" value = ''>
         <br>
         <br>
         <button type = "button" name = "namebutton" id = "namebutton">Confirm Victims</button>
     </form>
     <br>
-    <div id = display>
+    <div id = "display">
         <div id = "turn" class = "wins"></div>
         <div id = "xwins" class = "wins"> </div>
         <div id = "owins" class = "wins"></div>
+    </div>
+    <div id = "results">
+        <div id = "resultsscreen">
+            <div id = "resultstext">Who will Win & Who will Die?</div>
+        </div>
     </div>
     <div id = "container">
     <div id = "gameboard">

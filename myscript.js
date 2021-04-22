@@ -10,7 +10,7 @@ let playerOWins = 0;
 let roundTracker = 0;
 const gameBoard = ['','','','','','','',''
 ,'']
-let winConditions = [
+const winConditions = [
     [0,1,2],
     [0,3,6],
     [0,4,8],
@@ -32,22 +32,19 @@ let eight = document.getElementById('eight');
 let nine = document.getElementById('nine');
 let reset = document.getElementById('reset');
 let next = document.getElementById('next');
-let squares = [one,two,three,four,five,six,seven,eight,nine];
+const squares = [one,two,three,four,five,six,seven,eight,nine];
 let xWinsTracker = document.getElementById('xwins')
 let oWinsTracker = document.getElementById('owins')
 let player = document.getElementById('turn')
 let myForm = document.getElementById('myform');
 let game = document.getElementById("gameboard");
 let winCounter = document.getElementById('display');
-let buttons = document.getElementById('buttons');
-
-/*let questionButton = document.getElementById("questionsubmit")
-questionButton.addEventListener('click',()=>{
-
-})*/
-
-
+let buttons = document.getElementById('buttons')
 let nameButton = document.getElementById('namebutton');
+let results = document.getElementById('results');
+let screen = document.getElementById('resultsscreen')
+
+
 nameButton.addEventListener('click', () =>{
    playerXName = document.getElementById("playerXName").value;
    playerOName = document.getElementById("playerOName").value;
@@ -56,6 +53,7 @@ nameButton.addEventListener('click', () =>{
    game.style.visibility = "visible"
    winCounter.style.visibility = "visible"
    buttons.style.visibility = "visible"
+   results.style.visibility = "visible"
    update();
 })
 
@@ -66,6 +64,7 @@ oWinsTracker.textContent = playerOName +" Wins = " + playerOWins;
 }
 next.addEventListener('click',() =>{
     clearBoard()
+    screen.textContent = "You're a glutton for punishment"
 })
 reset.addEventListener('click',()=>{
     clearBoard()
@@ -78,8 +77,10 @@ reset.addEventListener('click',()=>{
     game.style.visibility = "hidden"
     buttons.style.visibility = "hidden"
     winCounter.style.visibility = "hidden"
+    results.style.visibility = "hidden"
     document.getElementById("playerXName").value = playerXName
     document.getElementById("playerOName").value = playerOName
+    screen.textContent = "Who Will Win & Who Will Die?"
 })
 
 function clearBoard(){
@@ -97,7 +98,7 @@ function clearBoard(){
 function checkWinsX(){
     for (i = 0; i<winConditions.length;i++)
     if(gameBoard[winConditions[i][0]] == "X" && gameBoard[winConditions[i][1]] == "X" && gameBoard[winConditions[i][2]] =="X"){
-        alert("Player X Wins")
+        screen.textContent = ("So long " + playerOName + ", it was nice knowin' ya")
         winner = 'X';
         playerXWins++
     }
@@ -105,14 +106,15 @@ function checkWinsX(){
 function checkWinsO(){
     for (i = 0; i<winConditions.length;i++)
     if(gameBoard[winConditions[i][0]] == "O" && gameBoard[winConditions[i][1]] == "O" && gameBoard[winConditions[i][2]] =="O"){
-        alert("Player O Wins")
+        screen.textContent = ("So long " + playerXName + ", it was nice knowin' ya")
         winner = 'O';
         playerOWins++
     }
 }
+
 function checkDraw(){
     if(roundTracker == 9){
-        alert("Tie Game")
+        screen.textContent = ("Tie Game")
     }
 }
 function numbers(x, y){
@@ -129,24 +131,24 @@ function numbers(x, y){
                 currentPlayer = playerX
                 currentPlayerName = playerXName
                 }
+            return roundTracker++;
             }
-        return roundTracker++;
+        
     })
 }
+function allNumbers(){ 
+    let x = 0
+    squares.forEach(element =>
+        numbers(element, x++))
+    }
+
+
 
 update()
-numbers(one,0)
-numbers(two,1)
-numbers(three,2)
-numbers(four,3)
-numbers(five,4)
-numbers(six,5)
-numbers(seven,6)
-numbers(eight,7)
-numbers(nine,8);
+allNumbers()
 
-let check = document.querySelectorAll('.square');
 document.addEventListener('click',()=>{
+    console.log
     if (winner == ''){
     checkWinsX()
     checkWinsO()
